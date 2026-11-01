@@ -4,9 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>localstorage practice</title>
-    <script src="script.js"></script>
+    <title>LocalStorage Practice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+        }
 
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #studentInfo {
+            margin: 20px 0;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,9 +41,7 @@
 
     <form id="studentForm">
         <input type="text" id="name" placeholder="Enter your name" required>
-
         <input type="text" id="course" placeholder="Enter your course" required>
-
         <button type="submit">Save Information</button>
     </form>
 
@@ -24,5 +49,53 @@
     <div id="studentInfo"></div>
 
     <button id="clearBtn" type="button">Clear Information</button>
+
+    <script>
+        const form = document.getElementById('studentForm');
+        const nameInput = document.getElementById('name');
+        const courseInput = document.getElementById('course');
+        const studentInfo = document.getElementById('studentInfo');
+        const clearBtn = document.getElementById('clearBtn');
+
+        function renderStudentInfo() {
+            const student = JSON.parse(localStorage.getItem('studentInfo') || '{}');
+
+            if (!student.name && !student.course) {
+                studentInfo.innerHTML = '<p>No saved information yet.</p>';
+                return;
+            }
+
+            studentInfo.innerHTML = `
+                <p><strong>Name:</strong> ${student.name || 'N/A'}</p>
+                <p><strong>Course:</strong> ${student.course || 'N/A'}</p>
+            `;
+        }
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const student = {
+                name: nameInput.value.trim(),
+                course: courseInput.value.trim()
+            };
+
+            if (!student.name || !student.course) {
+                return;
+            }
+
+            localStorage.setItem('studentInfo', JSON.stringify(student));
+            renderStudentInfo();
+            form.reset();
+        });
+
+        clearBtn.addEventListener('click', function () {
+            localStorage.removeItem('studentInfo');
+            renderStudentInfo();
+            form.reset();
+        });
+
+        renderStudentInfo();
+    </script>
 </body>
- 
+
+</html>
