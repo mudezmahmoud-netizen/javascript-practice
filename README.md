@@ -25,6 +25,14 @@ node index.js
 - Object-Oriented Programming (OOP)
 - JavaScript Promises
 - Private fields
+- normal and edge cases
+- introduction to jest
+- cookies
+- page redirection
+- localstorage and sessionstorage
 
 ## Author
 JavaScript learner
+MAHMOUD MOHAMED
+
+
