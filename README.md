@@ -30,6 +30,26 @@ node index.js
 - cookies
 - page redirection
 - localstorage and sessionstorage
+  ## Project Structure
+
+ jest_testing/
+├── API.js
+├── API.test.js
+├── async.js
+├── async.test.js
+├── math.js
+├── math.test.js
+├── student.js
+├── student.test.js
+├── storage.js
+├── storage.test.js
+├── public/
+│   ├── localstorage.html
+│   ├── style.css
+│   └── script.js
+├── package.json
+├── README.md
+└── .gitignore
 
 ## Author
 JavaScript learner
